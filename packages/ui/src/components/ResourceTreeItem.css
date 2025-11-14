@@ -1,0 +1,7 @@
+.barn-list-tree-item::part(item) {
+  cursor: pointer;
+}
+
+.barn-list-tree-item::part(item):hover {
+  background-color: var(--wa-color-brand-fill-quiet);
+}

@@ -1,0 +1,13 @@
+.vite
+.DS_Store
+.env
+.env.local
+.env.*.local
+.turbo
+build
+dist
+dist-electron
+node_modules
+out
+storybook-static
+*.log

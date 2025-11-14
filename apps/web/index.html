@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- TODO: Currently allowing remote resources (fonts.bunny.net, ka-f.fontawesome.com) for fonts and icons.
+       Should migrate to local assets by properly configuring Web Awesome base path and bundling fonts locally. -->
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self' 'unsafe-inline' blob:; worker-src 'self' blob:; style-src 'self' 'unsafe-inline' https://fonts.bunny.net; img-src 'self' data: https:; connect-src 'self' data: https://*.amazonaws.com https://fonts.bunny.net https://ka-f.fontawesome.com; font-src 'self' https://fonts.bunny.net; object-src 'none'; base-uri 'self'; form-action 'self';">
+  <title>arch-navigator</title>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/index.tsx"></script>
+</body>
+
+</html>

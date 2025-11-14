@@ -1,0 +1,28 @@
+{
+  "name": "@arch-navigator/tool",
+  "version": "0.0.0-alpha",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./styles": "./src/index.css"
+  },
+  "scripts": {
+    "clean": "rm -rf node_modules",
+    "lint": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@awesome.me/webawesome": "^3.0.0",
+    "@arch-navigator/ui": "workspace:*",
+    "@arch-navigator/api": "workspace:*",
+    "clsx": "^2.1.1",
+    "solid-js": "^1.9.x",
+    "zod": "^4.1.x"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.14",
+    "tailwindcss": "^4.1.x",
+    "typescript": "^5.9.x",
+    "vite": "^7.1.9",
+    "vite-plugin-solid": "^2.11.9"
+  }
+}

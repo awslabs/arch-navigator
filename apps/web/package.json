@@ -1,0 +1,23 @@
+{
+  "name": "@arch-navigator/web",
+  "version": "0.0.0-alpha",
+  "type": "module",
+  "scripts": {
+    "clean": "rm -rf .vite dist node_modules",
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "lint": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@arch-navigator/tool": "workspace:*",
+    "clsx": "^2.1.1",
+    "solid-js": "^1.9.x"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.16",
+    "tailwindcss": "^4.1.x",
+    "typescript": "^5.9.x",
+    "vite": "^7.1.12",
+    "vite-plugin-solid": "^2.11.10"
+  }
+}
