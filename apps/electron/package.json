@@ -2,6 +2,7 @@
   "name": "@arch-navigator/electron",
   "version": "0.0.0-alpha",
   "main": ".vite/build/main.js",
+  "description": "A desktop application for navigating cloud infrastructure through a unified interface. Browse, inspect, and understand relationships between resources across AWS and other cloud providers",
   "scripts": {
     "clean": "rm -rf .vite out node_modules",
     "dev": "electron-forge start",
