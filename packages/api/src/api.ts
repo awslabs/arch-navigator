@@ -5,9 +5,14 @@ import {
   listResources as listAwsResources,
 } from "./actions/platform/aws";
 import {
+  awsCloudformationActions,
+  configureClient as configureAwsCloudFormationResourceClient,
+} from "./actions/resource/aws-cloudformation";
+import {
   configureClient as configureGenericResourceClient,
   genericActions,
-} from "./actions/resource/generic";
+} from "./actions/resource/aws-generic";
+
 import type { ICredentialedConfig } from "./credentials";
 import type { IBarn } from "./types";
 
@@ -23,6 +28,7 @@ export async function initializeApi(config: ICredentialedConfig) {
   configureThisClient(config);
   configureGenericResourceClient(config);
   configureAwsClient(config);
+  configureAwsCloudFormationResourceClient(config);
 }
 
 export async function listResources(
@@ -36,5 +42,10 @@ export async function getDetails(resource: IBarn) {
 }
 
 export async function getRelated(resource: IBarn) {
-  return genericActions.getRelated(resource);
+  switch (resource.type) {
+    case "AWS::CloudFormation::Stack":
+      return awsCloudformationActions.getRelated(resource);
+    default:
+      return genericActions.getRelated(resource);
+  }
 }

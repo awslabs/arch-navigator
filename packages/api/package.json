@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "@aws-sdk/client-cloudcontrol": "^3.906.0",
+    "@aws-sdk/client-cloudformation": "^3.906.0",
     "zod": "^4.1.x"
   },
   "devDependencies": {

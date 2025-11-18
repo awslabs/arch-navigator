@@ -2,7 +2,7 @@ import {
   CloudControlClient,
   type CloudControlClientConfig,
 } from "@aws-sdk/client-cloudcontrol";
-import { type IBarn, type IResourceDetails, parseArn } from "@repo/api";
+import { type IBarn, parseArn, type ResourceDetails } from "@repo/api";
 import type { ICredentialedConfig } from "@repo/api/credentials";
 import { extractArns } from "@repo/api/utils/arnUtil";
 import { type ResourceActionSet, UNSUPPORTED_TYPES } from "../types";
@@ -36,7 +36,7 @@ export const genericActions: ResourceActionSet = {
  */
 export async function getGenericDetails(
   resource: IBarn,
-): Promise<IResourceDetails> {
+): Promise<ResourceDetails> {
   // Handle unsupported types
   if (UNSUPPORTED_TYPES.has(resource.type)) {
     return {
