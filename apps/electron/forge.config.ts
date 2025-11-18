@@ -15,20 +15,13 @@ const config: ForgeConfig = {
     extraResource: [path.resolve(__dirname, "../web/dist")],
     asar: true,
   },
+  buildIdentifier: "arch-navigator",
   rebuildConfig: {},
   makers: [
-    new MakerSquirrel({}),
+    new MakerSquirrel({
+      name: "arch-navigator",
+    }),
     new MakerZIP({}, ["darwin"]),
-    new MakerRpm({
-      options: {
-        name: "arch-navigator",
-      },
-    }),
-    new MakerDeb({
-      options: {
-        name: "arch-navigator",
-      },
-    }),
   ],
   plugins: [
     new VitePlugin({
