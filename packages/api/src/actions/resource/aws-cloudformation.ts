@@ -3,8 +3,8 @@ import {
   type CloudFormationClientConfig,
   ListStackResourcesCommand,
 } from "@aws-sdk/client-cloudformation";
-import type { IBarn } from "@repo/api";
-import type { ICredentialedConfig } from "@repo/api/credentials";
+import type { Barn } from "@repo/api";
+import type { CredentialedConfig } from "@repo/api/credentials";
 import type { ResourceActionSet } from "../types";
 import { getGenericDetails } from "./aws-generic";
 
@@ -12,7 +12,7 @@ let clientConfig: CloudFormationClientConfig = {
   region: "us-east-1",
 };
 
-export function configureClient(config: ICredentialedConfig) {
+export function configureClient(config: CredentialedConfig) {
   clientConfig = { ...clientConfig, ...config };
   config.credentials;
 }
@@ -27,7 +27,7 @@ const getRelated: ResourceActionSet["getRelated"] = async (resource) => {
     const response = await client.send(command);
 
     const barns =
-      response.StackResourceSummaries?.map<IBarn>((stackResourceSummary) => {
+      response.StackResourceSummaries?.map<Barn>((stackResourceSummary) => {
         console.log(resource);
         return {
           identifier: stackResourceSummary.PhysicalResourceId || "",

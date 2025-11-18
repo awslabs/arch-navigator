@@ -1,12 +1,12 @@
-import type { IBarn, ResourceDetails } from "./types";
+import type { Barn, ResourceDetails } from "./types";
 
 export interface ResourceItem {
-  barn: IBarn;
+  barn: Barn;
   details: ResourceDetails;
 }
 
 export interface AppState<T = () => ResourceItem[] | undefined> {
   resources: T;
-  getRelated: (barn: IBarn) => Promise<IBarn[]>;
+  getRelated: (barn: Barn) => Promise<Barn[]>;
   loading: () => boolean;
 }

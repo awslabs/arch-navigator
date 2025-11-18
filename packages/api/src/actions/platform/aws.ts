@@ -3,20 +3,20 @@ import {
   type CloudControlClientConfig,
   ListResourcesCommand,
 } from "@aws-sdk/client-cloudcontrol";
-import { createBarn, type IBarn } from "@repo/api";
-import type { ICredentialedConfig } from "@repo/api/credentials";
-import type { IPlatformActionSet } from "../types";
+import { createBarn, type Barn } from "@repo/api";
+import type { CredentialedConfig } from "@repo/api/credentials";
+import type { PlatformActionSet } from "../types";
 
 let clientConfig: CloudControlClientConfig = {
   region: "us-east-1",
 };
 
-export function configureClient(config: ICredentialedConfig) {
+export function configureClient(config: CredentialedConfig) {
   clientConfig = { ...clientConfig, ...config };
   config.credentials;
 }
 
-export const awsActions: IPlatformActionSet = {
+export const awsActions: PlatformActionSet = {
   listResources,
 };
 
@@ -24,7 +24,7 @@ export const awsActions: IPlatformActionSet = {
  * Query options for listing resources.
  * Supports SQL-like filtering and selection (to be implemented).
  */
-export interface IListResourcesQuery {
+export interface ListResourcesQuery {
   /** Resource types to filter by (e.g., ['AWS::EC2::Instance', 'AWS::S3::Bucket']) */
   types?: string[];
   /** Field selection (e.g., ['identifier', 'type']) */
@@ -59,10 +59,10 @@ export interface IListResourcesQuery {
  */
 export async function listResources(
   query?: ListResourcesQuery,
-): Promise<IBarn[]> {
+): Promise<Barn[]> {
   const client = new CloudControlClient(clientConfig);
   const types = query?.types || ["AWS::CloudFormation::Stack"];
-  const allResources: IBarn[] = [];
+  const allResources: Barn[] = [];
 
   for (const type of types) {
     try {

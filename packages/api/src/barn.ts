@@ -1,8 +1,8 @@
-import type { IBarn } from "./types";
+import type { Barn } from "./types";
 
 const BARN_PREFIX = "barn://";
 
-export const fromBarn = (barnStr: string): IBarn => {
+export const fromBarn = (barnStr: string): Barn => {
   // Parse barn://account/region/resourceType/identifier using a single regex
   if (!barnStr) {
     throw new Error(`Invalid BARN format: ${barnStr}`);
@@ -25,7 +25,7 @@ export const fromBarn = (barnStr: string): IBarn => {
   };
 };
 
-export const toBarn = (resource: IBarn): string => {
+export const toBarn = (resource: Barn): string => {
   return (
     BARN_PREFIX +
     `${resource.account || ""}` +
@@ -38,7 +38,7 @@ export const toBarn = (resource: IBarn): string => {
 /**
  * Format a BARN identifier for display
  */
-export function formatBarnIdentifier(barn: IBarn): string {
+export function formatBarnIdentifier(barn: Barn): string {
   // CloudFormation stacks: extract stack name from ARN
   // Example: arn:aws:cloudformation:us-east-1:123456789012:stack/workload-discovery/f2530ed0-714f-11f0-9e65-0e7bab51d2d3
   if (barn.type === "AWS::CloudFormation::Stack") {

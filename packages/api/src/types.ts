@@ -20,7 +20,7 @@ export const BarnSchema = z.object({
   prettyName: z.string().optional(),
 });
 
-export type IBarn = z.infer<typeof BarnSchema>;
+export type Barn = z.infer<typeof BarnSchema>;
 
 /**
  * Resource properties returned from CCAPI.

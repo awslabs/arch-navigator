@@ -1,9 +1,9 @@
 import {
   type AppState,
   type AWSCredentials,
+  type Barn,
   getDetails,
   getRelated,
-  type IBarn,
   initializeApi,
   isElectron,
   listResources,
@@ -95,7 +95,7 @@ export default function Tool(props: ToolProps) {
           types: ["AWS::CloudFormation::Stack"],
         });
         return Promise.all(
-          barns.map(async (barn: IBarn) => ({
+          barns.map(async (barn: Barn) => ({
             barn,
             details: await getDetails(barn),
           })),

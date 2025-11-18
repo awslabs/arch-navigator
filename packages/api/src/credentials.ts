@@ -1,4 +1,4 @@
-export interface ICredentialedConfig {
+export interface CredentialedConfig {
   credentials: AWSCredentials;
 }
 

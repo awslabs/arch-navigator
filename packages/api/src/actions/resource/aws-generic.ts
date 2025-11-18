@@ -2,8 +2,8 @@ import {
   CloudControlClient,
   type CloudControlClientConfig,
 } from "@aws-sdk/client-cloudcontrol";
-import { type IBarn, parseArn, type ResourceDetails } from "@repo/api";
-import type { ICredentialedConfig } from "@repo/api/credentials";
+import { type Barn, parseArn, type ResourceDetails } from "@repo/api";
+import type { CredentialedConfig } from "@repo/api/credentials";
 import { extractArns } from "@repo/api/utils/arnUtil";
 import { type ResourceActionSet, UNSUPPORTED_TYPES } from "../types";
 
@@ -11,7 +11,7 @@ let clientConfig: CloudControlClientConfig = {
   region: "us-east-1",
 };
 
-export function configureClient(config: ICredentialedConfig) {
+export function configureClient(config: CredentialedConfig) {
   clientConfig = { ...clientConfig, ...config };
   config.credentials;
 }
@@ -35,7 +35,7 @@ export const genericActions: ResourceActionSet = {
  * ```
  */
 export async function getGenericDetails(
-  resource: IBarn,
+  resource: Barn,
 ): Promise<ResourceDetails> {
   // Handle unsupported types
   if (UNSUPPORTED_TYPES.has(resource.type)) {
@@ -88,14 +88,14 @@ export async function getGenericDetails(
  * // ]
  * ```
  */
-export async function getGenericRelated(resource: IBarn): Promise<IBarn[]> {
+export async function getGenericRelated(resource: Barn): Promise<Barn[]> {
   try {
     const details = await getGenericDetails(resource);
     const arns = extractArns(details);
 
     console.log(`Found ${arns.length} ARNs in ${resource.identifier}`);
 
-    const parsed: IBarn[] = [];
+    const parsed: Barn[] = [];
     const failed: string[] = [];
 
     arns.forEach((arn) => {

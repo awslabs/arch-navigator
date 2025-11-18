@@ -1,7 +1,7 @@
 import type { CloudControlClientConfig } from "@aws-sdk/client-cloudcontrol";
 import {
   configureClient as configureAwsClient,
-  type IListResourcesQuery,
+  type ListResourcesQuery,
   listResources as listAwsResources,
 } from "./actions/platform/aws";
 import {
@@ -13,18 +13,18 @@ import {
   genericActions,
 } from "./actions/resource/aws-generic";
 
-import type { ICredentialedConfig } from "./credentials";
-import type { IBarn } from "./types";
+import type { CredentialedConfig } from "./credentials";
+import type { Barn } from "./types";
 
 let clientConfig: CloudControlClientConfig = {
   region: "us-east-1",
 };
 
-function configureThisClient(config: ICredentialedConfig) {
+function configureThisClient(config: CredentialedConfig) {
   clientConfig = { ...clientConfig, ...config };
 }
 
-export async function initializeApi(config: ICredentialedConfig) {
+export async function initializeApi(config: CredentialedConfig) {
   configureThisClient(config);
   configureGenericResourceClient(config);
   configureAwsClient(config);
@@ -32,16 +32,16 @@ export async function initializeApi(config: ICredentialedConfig) {
 }
 
 export async function listResources(
-  query?: IListResourcesQuery,
-): Promise<IBarn[]> {
+  query?: ListResourcesQuery,
+): Promise<Barn[]> {
   return listAwsResources(query);
 }
 
-export async function getDetails(resource: IBarn) {
+export async function getDetails(resource: Barn) {
   return genericActions.getDetails(resource);
 }
 
-export async function getRelated(resource: IBarn) {
+export async function getRelated(resource: Barn) {
   switch (resource.type) {
     case "AWS::CloudFormation::Stack":
       return awsCloudformationActions.getRelated(resource);

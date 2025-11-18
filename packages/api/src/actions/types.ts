@@ -1,16 +1,16 @@
-import type { IBarn, ResourceDetails } from "../types";
+import type { Barn, ResourceDetails } from "../types";
 
 export interface ResourceActionSet {
-  getDetails: (resource: IBarn) => Promise<ResourceDetails>;
-  getRelated: (resource: IBarn) => Promise<IBarn[]>;
+  getDetails: (resource: Barn) => Promise<ResourceDetails>;
+  getRelated: (resource: Barn) => Promise<Barn[]>;
 }
 
 export const UNSUPPORTED_TYPES = new Set([
   "AWS::IAM::Policy", // CloudControl doesn't support READ
 ]);
 
-export interface IPlatformActionSet {
-  listResources: (query: ListResourcesQuery) => Promise<IBarn[]>;
+export interface PlatformActionSet {
+  listResources: (query: ListResourcesQuery) => Promise<Barn[]>;
 }
 
 /**

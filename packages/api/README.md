@@ -10,7 +10,7 @@ BARN provides a normalized way to work with cloud resources across multiple prov
 
 ### BARN Structure
 ```typescript
-interface IBarn {
+interface Barn {
   type: string;        // Resource type (e.g., 'AWS::EC2::Instance', 'Azure::Compute::VirtualMachine')
   identifier: string;  // Resource identifier (e.g., 'i-1234567890abcdef0')
   arn?: string;        // Optional raw resource identifier
