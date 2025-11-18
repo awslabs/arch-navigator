@@ -23,6 +23,6 @@ jobs:
           cache: "pnpm"
       - name: Install
         run: pnpm install
-      - name: Check lint 
+      - name: Build electron
         run: pnpm build:electron
 
