@@ -1,10 +1,10 @@
 import {
   type AppState,
   type AWSCredentials,
-  configureClient,
   getDetails,
   getRelated,
   type IBarn,
+  initializeApi,
   isElectron,
   listResources,
   loadElectronCredentials,
@@ -13,8 +13,8 @@ import "@repo/ui";
 import { Layout } from "@repo/ui/components/Layout";
 import clsx from "clsx";
 import { createResource, createSignal, onMount, Show, untrack } from "solid-js";
-import "./Tool.css";
 import { CredentialsForm } from "./CredentialsForm";
+import "./Tool.css";
 
 const appName = "arch-navigator";
 
@@ -88,7 +88,7 @@ export default function Tool(props: ToolProps) {
         }
       }
 
-      configureClient({ credentials: activeCreds });
+      initializeApi({ credentials: activeCreds });
 
       try {
         const barns = await listResources({
@@ -101,6 +101,7 @@ export default function Tool(props: ToolProps) {
           })),
         );
       } catch (error) {
+        console.error("failed to list resourced", error);
         untrack(() => {
           setCredentials(null);
         });
