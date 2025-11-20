@@ -12,6 +12,7 @@ import { createSignal, For, Show } from "solid-js";
 import "../index.css";
 import "../webawesome";
 import "./ResourceTreeItem.css";
+import { ResourceIcon } from "./icons/ResourceIcon";
 
 interface ResourceTreeItemProps {
   item: ResourceItem;
@@ -42,7 +43,7 @@ export function ResourceTreeItem(props: ResourceTreeItemProps) {
           (pathBarn) =>
             pathBarn.type === barn.type &&
             normalizeIdentifier(pathBarn.identifier) ===
-              normalizeIdentifier(barn.identifier),
+            normalizeIdentifier(barn.identifier),
         ),
     );
     console.log("filtered count:", filtered.length);
@@ -67,15 +68,28 @@ export function ResourceTreeItem(props: ResourceTreeItemProps) {
       onWa-lazy-load={handleLazyLoad}
     >
       <div
-        class={clsx("barn-list-item", "flex", "flex-col", "py-2")}
+        class={clsx(
+          "barn-list-item",
+          "flex",
+          "flex-row",
+          "gap-2",
+          "py-2",
+          "items-center",
+        )}
         data-barn={toBarn(props.item.barn)}
         data-path={JSON.stringify(currentPath())}
       >
-        <div class={clsx("font-bold")}>
-          {formatBarnIdentifier(props.item.barn)}
+        <div class={clsx("barn-list-item-icon", "min-w-6")}>
+          <ResourceIcon resource={props.item.barn} options={{ size: 24 }} />
         </div>
-        <div class={clsx("text-sm", "text-(--wa-color-text-subtle)")}>
-          {formatBarnType(props.item.barn.type)}
+
+        <div class={clsx("barn-list-item-details")}>
+          <div class={clsx("font-bold")}>
+            {formatBarnIdentifier(props.item.barn)}
+          </div>
+          <div class={clsx("text-sm", "text-(--wa-color-text-subtle)")}>
+            {formatBarnType(props.item.barn.type)}
+          </div>
         </div>
       </div>
       <Show when={children().length > 0}>

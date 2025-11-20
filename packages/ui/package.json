@@ -14,9 +14,11 @@
     "lint": "tsc --noEmit"
   },
   "dependencies": {
-    "@awesome.me/webawesome": "^3.0.0",
     "@arch-navigator/api": "workspace:*",
+    "@awesome.me/webawesome": "^3.0.0",
+    "@types/lodash-es": "^4.17.12",
     "clsx": "^2.1.1",
+    "lodash-es": "^4.17.21",
     "lucide-solid": "^0.544.x",
     "solid-js": "^1.9.x"
   },

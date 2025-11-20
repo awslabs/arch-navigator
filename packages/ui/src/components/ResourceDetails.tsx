@@ -1,9 +1,10 @@
 import type { ResourceItem } from "@repo/api";
 import { formatBarnIdentifier, formatBarnType, getDetails } from "@repo/api";
 import clsx from "clsx";
-import { createResource, createSignal, For, Show } from "solid-js";
+import { createMemo, createResource, createSignal, For, Show } from "solid-js";
 import "../index.css";
 import "../webawesome";
+import { ResourceIcon } from "./icons/ResourceIcon";
 
 interface ResourceDetailsProps {
   resource?: ResourceItem;
@@ -11,6 +12,8 @@ interface ResourceDetailsProps {
 
 export function ResourceDetails(props: ResourceDetailsProps) {
   const [filter, setFilter] = createSignal("");
+
+  const currentBarn = createMemo(() => props.resource?.barn);
 
   const [details] = createResource(
     () => {
@@ -75,16 +78,19 @@ export function ResourceDetails(props: ResourceDetailsProps) {
       ),
     );
   };
-
   return (
     <div class={clsx("resource-details", "flex", "flex-col", "gap-4", "p-4")}>
       <Show when={props.resource} fallback={<div>Select a resource</div>}>
         <div class={clsx("flex", "flex-col", "gap-2", "border-b", "pb-4")}>
           <div class={clsx("flex", "gap-2", "items-start")}>
-            <wa-icon
-              class={clsx("text-2xl", "top-1", "relative")}
-              name="cube"
-            ></wa-icon>
+            <div class={clsx("top-1", "relative", "min-w-8")}>
+              <Show when={currentBarn()}>
+                <ResourceIcon
+                  resource={currentBarn()!}
+                  options={{ size: 28 }}
+                />
+              </Show>
+            </div>
             <div class={clsx("text-2xl", "font-bold")}>
               {formatBarnIdentifier(props.resource!.barn)}
             </div>

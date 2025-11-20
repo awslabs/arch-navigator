@@ -56,3 +56,6 @@ export function formatBarnType(type: string): string {
   return type;
   // return type.replace(/^AWS::/, "");
 }
+
+export const serviceFromBarn = (barn: Barn): string =>
+  barn.type.split("::")[1].toLowerCase();

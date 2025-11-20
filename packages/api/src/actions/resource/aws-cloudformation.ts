@@ -35,14 +35,20 @@ const getRelated: ResourceActionSet["getRelated"] = async (resource) => {
         return {
           identifier: stackResourceSummary.PhysicalResourceId || "",
           arn: stackResourceSummary.PhysicalResourceId || "",
-          name: stackResourceSummary.LogicalResourceId || "",
+          prettyName: stackResourceSummary.LogicalResourceId || "",
           type: stackResourceSummary.ResourceType || "",
           region: resource.region || "",
           account: resource.account || "",
         };
       }) || [];
 
-    return barns;
+    return barns.sort((a, b) => {
+      const aIsStack = a.type === "AWS::CloudFormation::Stack" ? 0 : 1;
+      const bIsStack = b.type === "AWS::CloudFormation::Stack" ? 0 : 1;
+      if (aIsStack !== bIsStack) return aIsStack - bIsStack;
+      if (a.prettyName !== b.prettyName) return (a.prettyName || "").localeCompare(b.prettyName || "");
+      return a.type.localeCompare(b.type);
+    });
   } catch (error) {
     console.error(
       `Failed to get related resources for ${resource.identifier}:`,
