@@ -5,8 +5,8 @@ export interface ResourceActionSet {
   getRelated: (resource: Barn) => Promise<Barn[]>;
 }
 
-export const UNSUPPORTED_TYPES = new Set([
-  "AWS::IAM::Policy", // CloudControl doesn't support READ
+export const UNSUPPORTED_TYPES = new Set<string>([
+  // "AWS::IAM::Policy", // CloudControl doesn't support READ
 ]);
 
 export interface PlatformActionSet {

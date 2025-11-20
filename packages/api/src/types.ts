@@ -28,4 +28,8 @@ export type Barn = z.infer<typeof BarnSchema>;
  */
 export interface ResourceDetails {
   [field: string]: unknown;
+  LoggingConfig?: {
+    LogFormat: string;
+    LogGroup: string;
+  };
 }

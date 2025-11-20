@@ -34,13 +34,14 @@ const SERVICE_MAPPINGS: Record<
   },
   /** IAM: roles, users, policies */
   iam: (resource) => {
-    const [resourceType, name] = resource.split("/");
+    const [resourceType, ...rest] = resource.split("/");
     const typeMap: Record<string, string> = {
       role: "AWS::IAM::Role",
       user: "AWS::IAM::User",
       policy: "AWS::IAM::Policy",
     };
-    return typeMap[resourceType]
+    const name = rest.join("/");
+    return typeMap[resourceType] && name
       ? { type: typeMap[resourceType], identifier: name }
       : null;
   },

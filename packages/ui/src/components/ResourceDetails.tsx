@@ -80,8 +80,11 @@ export function ResourceDetails(props: ResourceDetailsProps) {
     <div class={clsx("resource-details", "flex", "flex-col", "gap-4", "p-4")}>
       <Show when={props.resource} fallback={<div>Select a resource</div>}>
         <div class={clsx("flex", "flex-col", "gap-2", "border-b", "pb-4")}>
-          <div class={clsx("flex", "gap-2", "items-center")}>
-            <wa-icon name="cube"></wa-icon>
+          <div class={clsx("flex", "gap-2", "items-start")}>
+            <wa-icon
+              class={clsx("text-2xl", "top-1", "relative")}
+              name="cube"
+            ></wa-icon>
             <div class={clsx("text-2xl", "font-bold")}>
               {formatBarnIdentifier(props.resource!.barn)}
             </div>
@@ -102,19 +105,20 @@ export function ResourceDetails(props: ResourceDetailsProps) {
           </Show>
         </div>
 
+        <wa-input
+          placeholder="Filter fields..."
+          size="small"
+          value={filter()}
+          onInput={(e: InputEvent) =>
+            setFilter((e.target as HTMLInputElement).value)
+          }
+        />
+
         <Show when={details.loading}>
           <wa-spinner></wa-spinner>
         </Show>
 
         <Show when={!details.loading && entries().length > 0}>
-          <wa-input
-            placeholder="Filter fields..."
-            size="small"
-            value={filter()}
-            onInput={(e: InputEvent) =>
-              setFilter((e.target as HTMLInputElement).value)
-            }
-          />
           <div class={clsx("columns-1", "lg:columns-2", "gap-4")}>
             <For each={entries()}>
               {([key, value]) => {

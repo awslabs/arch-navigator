@@ -101,7 +101,6 @@ export async function getGenericRelated(resource: Barn): Promise<Barn[]> {
 
     const parsed: Barn[] = [];
     const failed: string[] = [];
-
     arns.forEach((arn) => {
       const barn = parseArn(arn);
       if (barn) {
@@ -110,19 +109,25 @@ export async function getGenericRelated(resource: Barn): Promise<Barn[]> {
         failed.push(arn);
       }
     });
-
     const successRate =
       arns.length > 0 ? ((parsed.length / arns.length) * 100).toFixed(1) : "0";
-
     console.log(
       `Parsed ${parsed.length}/${arns.length} ARNs (${successRate}% success)`,
     );
-
     if (failed.length > 0) {
       console.log("Failed to parse ARNs:", failed);
     }
 
-    return parsed;
+    const found: Barn[] = [];
+    const logGroupName = details.LoggingConfig?.LogGroup;
+    if (logGroupName) {
+      found.push({
+        type: "AWS::Logs::LogGroup",
+        identifier: logGroupName,
+      });
+    }
+
+    return [...parsed, ...found];
   } catch (error) {
     console.error(
       `Failed to get related resources for ${resource.identifier}:`,

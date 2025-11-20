@@ -32,7 +32,6 @@ const getRelated: ResourceActionSet["getRelated"] = async (resource) => {
 
     const barns =
       response.StackResourceSummaries?.map<Barn>((stackResourceSummary) => {
-        console.log(resource);
         return {
           identifier: stackResourceSummary.PhysicalResourceId || "",
           arn: stackResourceSummary.PhysicalResourceId || "",
