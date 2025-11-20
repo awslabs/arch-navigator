@@ -1,4 +1,4 @@
-import type { Barn } from "./types";
+import type { Barn } from "../types";
 
 /**
  * ARN Parser for AWS Resources
