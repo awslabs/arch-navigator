@@ -4,14 +4,9 @@ import {
   type ListResourcesQuery,
   listResources as listAwsResources,
 } from "./actions/platform/aws";
-import {
-  awsCloudformationActions,
-  configureClient as configureAwsCloudFormationResourceClient,
-} from "./actions/resource/aws-cloudformation";
-import {
-  configureClient as configureGenericResourceClient,
-  genericActions,
-} from "./actions/resource/aws-generic";
+import { configureClient as configureAwsCloudFormationResourceClient } from "./actions/resource/aws-cloudformation";
+import { configureClient as configureGenericResourceClient } from "./actions/resource/aws-generic";
+import { resourceActions } from "./actions/resource";
 
 import type { CredentialedConfig } from "./credentials";
 import type { Barn } from "./types";
@@ -38,14 +33,9 @@ export async function listResources(
 }
 
 export async function getDetails(resource: Barn) {
-  return genericActions.getDetails(resource);
+  return resourceActions.getDetails(resource);
 }
 
 export async function getRelated(resource: Barn) {
-  switch (resource.type) {
-    case "AWS::CloudFormation::Stack":
-      return awsCloudformationActions.getRelated(resource);
-    default:
-      return genericActions.getRelated(resource);
-  }
+  return resourceActions.getRelated(resource);
 }

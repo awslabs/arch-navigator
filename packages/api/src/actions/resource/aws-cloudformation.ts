@@ -8,13 +8,17 @@ import type { CredentialedConfig } from "@repo/api/credentials";
 import type { ResourceActionSet } from "../types";
 import { getGenericDetails } from "./aws-generic";
 
+let configured = false;
 let clientConfig: CloudFormationClientConfig = {
   region: "us-east-1",
 };
 
 export function configureClient(config: CredentialedConfig) {
-  clientConfig = { ...clientConfig, ...config };
-  config.credentials;
+  if (!configured) {
+    clientConfig = { ...clientConfig, ...config };
+    config.credentials;
+    configured = true;
+  }
 }
 
 const getRelated: ResourceActionSet["getRelated"] = async (resource) => {

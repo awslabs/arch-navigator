@@ -7,13 +7,17 @@ import type { CredentialedConfig } from "@repo/api/credentials";
 import { extractArns } from "@repo/api/utils/arnUtil";
 import { type ResourceActionSet, UNSUPPORTED_TYPES } from "../types";
 
+let configured = false;
 let clientConfig: CloudControlClientConfig = {
   region: "us-east-1",
 };
 
 export function configureClient(config: CredentialedConfig) {
-  clientConfig = { ...clientConfig, ...config };
-  config.credentials;
+  if (!configured) {
+    clientConfig = { ...clientConfig, ...config };
+    config.credentials;
+    configured = true;
+  }
 }
 
 export const genericActions: ResourceActionSet = {
