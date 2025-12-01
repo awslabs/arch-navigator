@@ -6,8 +6,9 @@
   "scripts": {
     "clean": "rm -rf .vite out node_modules",
     "dev": "electron-forge start",
-    "build": "pnpm --filter @arch-navigator/web build && electron-forge make",
-    "package": "pnpm --filter @arch-navigator/web build && electron-forge package",
+    "build": "pnpm --filter @arch-navigator/web build && electron-forge package && pnpm sign && electron-forge make --skip-package",
+    "package": "pnpm --filter @arch-navigator/web build && electron-forge package && pnpm sign",
+    "sign": "codesign --deep --force --sign arch-navigator-dev out/arch-navigator/arch-navigator-darwin-arm64/arch-navigator.app",
     "lint": "tsc --noEmit"
   },
   "build": {
@@ -79,6 +80,7 @@
     "@electron-forge/maker-squirrel": "^7.10.2",
     "@electron-forge/maker-zip": "^7.10.2",
     "@electron-forge/plugin-vite": "^7.10.2",
+    "@electron/osx-sign": "^2.3.0",
     "@types/node": "^20.0.0",
     "electron": "^38.2.2",
     "typescript": "^5.3.0"

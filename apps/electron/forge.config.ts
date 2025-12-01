@@ -14,6 +14,9 @@ const config: ForgeConfig = {
     icon: "./resources/arch-navigator",
     extraResource: [path.resolve(__dirname, "../web/dist")],
     asar: true,
+    osxSign: {
+      identity: "arch-navigator-dev",
+    },
   },
   buildIdentifier: "arch-navigator",
   rebuildConfig: {},
