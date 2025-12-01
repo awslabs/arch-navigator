@@ -134,7 +134,7 @@ export default function Tool(props: ToolProps) {
         )}
         style={{ "font-size": `${appFontSize}px` }}
       >
-        <div class={clsx("relative")}>
+        <div class={clsx("relative", "whitespace-nowrap")}>
           <code
             class={clsx(
               "bg-transparent",
