@@ -20,8 +20,10 @@ function createWindow() {
         ...details.responseHeaders,
         // TODO: Currently allowing remote resources (fonts.bunny.net, ka-f.fontawesome.com) for fonts and icons.
         // Should migrate to local assets by properly configuring Web Awesome base path and bundling fonts locally.
-        'Content-Security-Policy': ["default-src 'self'; script-src 'self' 'unsafe-inline' blob:; worker-src 'self' blob:; style-src 'self' 'unsafe-inline' https://fonts.bunny.net; img-src 'self' data: https:; connect-src 'self' data: https://*.amazonaws.com https://fonts.bunny.net https://ka-f.fontawesome.com; font-src 'self' https://fonts.bunny.net; object-src 'none'; base-uri 'self'; form-action 'self';"]
-      }
+        "Content-Security-Policy": [
+          "default-src 'self'; script-src 'self' 'unsafe-inline' blob:; worker-src 'self' blob:; style-src 'self' 'unsafe-inline' https://fonts.bunny.net; img-src 'self' data: https:; connect-src 'self' data: https://*.amazonaws.com https://fonts.bunny.net https://ka-f.fontawesome.com; font-src 'self' https://fonts.bunny.net; object-src 'none'; base-uri 'self'; form-action 'self';",
+        ],
+      },
     });
   });
 
@@ -29,6 +31,7 @@ function createWindow() {
     width: 1024,
     height: 600,
     show: false,
+    backgroundColor: "#0a1127",
     title: "arch-navigator",
     webPreferences: {
       nodeIntegration: false,
@@ -40,22 +43,21 @@ function createWindow() {
     },
   });
 
+  // Show window when ready to prevent white flash
+  win.once("ready-to-show", () => {
+    win.show();
+  });
+
   if (
     typeof MAIN_WINDOW_VITE_DEV_SERVER_URL !== "undefined" &&
     MAIN_WINDOW_VITE_DEV_SERVER_URL
   ) {
     win.loadURL(MAIN_WINDOW_VITE_DEV_SERVER_URL);
-    win.show();
   } else {
     const htmlPath = path.join(process.resourcesPath, "dist/index.html");
     console.log("Loading from:", htmlPath);
     win.loadFile(htmlPath).catch((err) => {
       console.error("Failed to load file:", err);
-    });
-
-    win.webContents.on("did-finish-load", () => {
-      console.log("Page loaded, showing window");
-      win.show();
     });
   }
 }
