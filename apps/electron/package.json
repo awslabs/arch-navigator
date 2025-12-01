@@ -8,7 +8,7 @@
     "dev": "electron-forge start",
     "build": "pnpm --filter @arch-navigator/web build && electron-forge package && pnpm sign && electron-forge make --skip-package",
     "package": "pnpm --filter @arch-navigator/web build && electron-forge package && pnpm sign",
-    "sign": "codesign --deep --force --sign arch-navigator-dev out/arch-navigator/arch-navigator-darwin-arm64/arch-navigator.app",
+    "sign": "codesign --deep --force --sign arch-navigator-dev out/arch-navigator/arch-navigator-darwin-arm64/arch-navigator.app || echo 'Warning: Code signing failed (certificate may not be installed)'",
     "lint": "tsc --noEmit"
   },
   "build": {
