@@ -1,6 +1,7 @@
 import {
   CloudControlClient,
   type CloudControlClientConfig,
+  GetResourceCommand,
 } from "@aws-sdk/client-cloudcontrol";
 import { type Barn, parseArn, type ResourceDetails } from "@repo/api";
 import type { CredentialedConfig } from "@repo/api/credentials";
@@ -53,7 +54,6 @@ export async function getGenericDetails(
   const client = new CloudControlClient(clientConfig);
 
   try {
-    const { GetResourceCommand } = await import("@aws-sdk/client-cloudcontrol");
     const command = new GetResourceCommand({
       TypeName: resource.type,
       Identifier: resource.identifier,
