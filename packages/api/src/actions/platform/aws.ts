@@ -101,8 +101,5 @@ export async function listResources(
     resources = resources.slice(0, query.limit);
   }
 
-  // Simulate network delay
-  await new Promise((resolve) => setTimeout(resolve, 100));
-
   return resources;
 }
