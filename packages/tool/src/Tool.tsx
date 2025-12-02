@@ -12,6 +12,7 @@ import {
 import "@repo/ui";
 import { Layout } from "@repo/ui/components/Layout";
 import clsx from "clsx";
+import { Moon, Sun } from "lucide-solid";
 import { createResource, createSignal, onMount, Show, untrack } from "solid-js";
 import { CredentialsForm } from "./CredentialsForm";
 import "./Tool.css";
@@ -217,11 +218,7 @@ export default function Tool(props: ToolProps) {
           appearance="outlined"
           onClick={() => setDarkMode(!darkMode())}
         >
-          {darkMode() ? (
-            <wa-icon name="sun" label="Light"></wa-icon>
-          ) : (
-            <wa-icon name="moon" label="Dark"></wa-icon>
-          )}
+          {darkMode() ? <Sun /> : <Moon />}
         </wa-button>
       </div>
     </div>

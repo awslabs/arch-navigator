@@ -272,6 +272,9 @@ importers:
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
+      lucide-solid:
+        specifier: ^0.544.0
+        version: 0.544.0(solid-js@1.9.10)
       solid-js:
         specifier: ^1.9.x
         version: 1.9.10
