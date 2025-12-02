@@ -55,6 +55,10 @@ Built artifacts will be available in `apps/electron/out/`.
 
 **Prerequisites for Running:**
 - Your default AWS CLI profile should be configured on your system
+  - use the following command to verify your AWS CLI setup:
+  ```bash
+  aws cloudformation list-stacks --query "StackSummaries[?ParentId==null].StackName"
+  ```
   - If AWS CLI is not configured, you can paste credential JSON directly in the application
 
 **Code Signing (macOS):**
