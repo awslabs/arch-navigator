@@ -20,10 +20,19 @@ A desktop application for navigating cloud infrastructure through a unified inte
 
 ## Quick Start
 
+> ⚡ **NB:** These usage patterns will evolve quickly as the project matures.
+
+## Setup
+
 ### Prerequisites
 
 - Node.js 24+ and pnpm
-- AWS credentials configured (for AWS resources)
+- Your default AWS CLI profile should be configured on your system
+  - use the following command to verify your AWS CLI setup:
+  ```bash
+  aws cloudformation list-stacks --query "StackSummaries[?ParentId==null].StackName"
+  ```
+  - If AWS CLI is not configured, you can paste credential JSON directly in the application
 
 ### Installation
 
@@ -37,40 +46,21 @@ pnpm install
 
 # Build packages
 pnpm build
+
+# Built artifacts available apps/electron/out/
 ```
 
-## Usage
-
-> ⚡ **NB:** These usage patterns will evolve quickly as the project matures.
-
-### Building the Desktop Application
-
-To build the desktop application:
-
-```bash
-pnpm build:electron
-```
-
-Built artifacts will be available in `apps/electron/out/`.
-
-**Prerequisites for Running:**
-- Your default AWS CLI profile should be configured on your system
-  - use the following command to verify your AWS CLI setup:
-  ```bash
-  aws cloudformation list-stacks --query "StackSummaries[?ParentId==null].StackName"
-  ```
-  - If AWS CLI is not configured, you can paste credential JSON directly in the application
-
-**Code Signing (macOS):**
+#### Code Signing (MacOS)
 
 The build process uses a rudimentary signing approach to enable cross-device builds. The sign script attempts to use an `arch-navigator-dev` certificate for code signing. If available in macOS Keychain, it will be used. Otherwise, the app will not be signed.
 
 To create the certificate locally, in Keychain Access use 'Certificate Assistant' > 'Create a Certificate':
-- Name: `arch-navigator-dev`
-- Identity Type: 'Self Signed Root'
-- Certificate Type: 'Code Signing'
+- **Name:** `arch-navigator-dev`
+- **Identity Type:** `Self Signed Root`
+- **Certificate Type:** `Code Signing`
 
-### Running the Application
+
+### Running the Application in Dev Mode
 
 **Web Application:**
 
@@ -85,6 +75,7 @@ pnpm dev:web
 pnpm dev:electron
 # Opens app
 ```
+
 
 ## How It Works
 
