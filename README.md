@@ -32,6 +32,13 @@ A desktop application for navigating cloud infrastructure through a unified inte
   ```bash
   aws cloudformation list-stacks --query "StackSummaries[?ParentId==null].StackName"
   ```
+  - If AWS CLI is configured, you should see a list of existing CloudFormation stacks:
+  ```bash
+  [
+    "stack-one",
+    "stack-two"
+  ]
+  ```
   - If AWS CLI is not configured, you can paste credential JSON directly in the application
 
 ### Installation
