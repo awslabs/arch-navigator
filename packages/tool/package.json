@@ -11,10 +11,11 @@
     "lint": "tsc --noEmit"
   },
   "dependencies": {
-    "@awesome.me/webawesome": "^3.0.0",
-    "@arch-navigator/ui": "workspace:*",
     "@arch-navigator/api": "workspace:*",
+    "@arch-navigator/ui": "workspace:*",
+    "@awesome.me/webawesome": "^3.0.0",
     "clsx": "^2.1.1",
+    "lucide-solid": "^0.544.0",
     "solid-js": "^1.9.x",
     "zod": "^4.1.x"
   },
