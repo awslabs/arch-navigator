@@ -13,6 +13,11 @@ A desktop application for navigating cloud infrastructure through a unified inte
 - **Desktop & Web**: Run as an Electron desktop app or in your browser
 - **Credential Management**: Secure credential handling with automatic CLI integration
 
+## Current Experience
+
+- List all root CloudFormation stacks in expandable tree view.
+- Select resource nodes to show details.
+
 ## Quick Start
 
 ### Prerequisites
@@ -34,6 +39,33 @@ pnpm install
 pnpm build
 ```
 
+## Usage
+
+> ⚡ **NB:** These usage patterns will evolve quickly as the project matures.
+
+### Building the Desktop Application
+
+To build the desktop application:
+
+```bash
+pnpm build:electron
+```
+
+Built artifacts will be available in `apps/electron/out/`.
+
+**Prerequisites for Running:**
+- Your default AWS CLI profile should be configured on your system
+  - If AWS CLI is not configured, you can paste credential JSON directly in the application
+
+**Code Signing (macOS):**
+
+The build process uses a rudimentary signing approach to enable cross-device builds. The sign script attempts to use an `arch-navigator-dev` certificate for code signing. If available in macOS Keychain, it will be used. Otherwise, the app will not be signed.
+
+To create the certificate locally, in Keychain Access use 'Certificate Assistant' > 'Create a Certificate':
+- Name: `arch-navigator-dev`
+- Identity Type: 'Self Signed Root'
+- Certificate Type: 'Code Signing'
+
 ### Running the Application
 
 **Web Application:**
@@ -43,14 +75,11 @@ pnpm dev:web
 # Opens at http://localhost:5173
 ```
 
-**Desktop Application:**
+**Desktop Application (Development):**
 
 ```bash
-# Terminal 1: Start web dev server
-pnpm dev:web
-
-# Terminal 2: Launch Electron
-NODE_ENV=development pnpm dev:electron
+pnpm dev:electron
+# Opens app
 ```
 
 ## How It Works
