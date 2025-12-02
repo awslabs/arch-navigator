@@ -11,4 +11,13 @@
       ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
       "Liberation Mono", monospace;
   }
+
+  .cred-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 10px;
+    max-width: 420px;
+    overflow: scroll;
+    white-space: nowrap;
+  }
 }

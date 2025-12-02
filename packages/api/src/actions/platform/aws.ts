@@ -3,7 +3,8 @@ import {
   type CloudControlClientConfig,
   ListResourcesCommand,
 } from "@aws-sdk/client-cloudcontrol";
-import { createBarn, type Barn } from "@repo/api";
+import { GetCallerIdentityCommand, STSClient } from "@aws-sdk/client-sts";
+import { type Barn, createBarn } from "@repo/api";
 import type { CredentialedConfig } from "@repo/api/credentials";
 import type { PlatformActionSet } from "../types";
 
@@ -102,4 +103,22 @@ export async function listResources(
   }
 
   return resources;
+}
+
+/**
+ * Gets information about the AWS identity making the API calls.
+ *
+ * @returns Promise resolving to caller identity information
+ *
+ * @example
+ * ```ts
+ * const identity = await getCallerIdentity();
+ * console.log(identity.Account, identity.Arn);
+ * ```
+ */
+export async function getCallerIdentity() {
+  const client = new STSClient(clientConfig);
+  const command = new GetCallerIdentityCommand({});
+  const response = await client.send(command);
+  return response;
 }

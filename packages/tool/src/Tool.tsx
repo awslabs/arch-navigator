@@ -2,6 +2,7 @@ import {
   type AppState,
   type AWSCredentials,
   type Barn,
+  getCallerIdentity,
   getDetails,
   getRelated,
   initializeApi,
@@ -83,7 +84,7 @@ export default function Tool(props: ToolProps) {
       if (isElectron()) {
         try {
           activeCreds = await loadElectronCredentials();
-          setCredInfo(`CLI: ${activeCreds.accessKeyId.slice(0, 12)}...`);
+          setCredInfo(`Default Profile`);
         } catch (error) {
           console.error("Failed to reload credentials:", error);
         }
@@ -107,6 +108,18 @@ export default function Tool(props: ToolProps) {
           setCredentials(null);
         });
         return [];
+      }
+    },
+  );
+
+  const [callerIdentity] = createResource(
+    () => resources(),
+    async () => {
+      try {
+        return await getCallerIdentity();
+      } catch (error) {
+        console.error("Failed to get caller identity:", error);
+        return null;
       }
     },
   );
@@ -164,7 +177,7 @@ export default function Tool(props: ToolProps) {
           >
             {appName}
             {credentials() && (
-              <wa-popup placement="right-start" active={showCredentials()}>
+              <wa-popup placement="bottom-end" active={showCredentials()}>
                 <span
                   class={clsx("absolute", "cursor-pointer")}
                   slot="anchor"
@@ -186,15 +199,16 @@ export default function Tool(props: ToolProps) {
                     <Show when={credInfo()}>
                       <p class="text-green-400 mb-2">✓ {credInfo()}</p>
                     </Show>
-                    <p>AccessKeyId: {credentials()?.accessKeyId}</p>
-                    <p>
-                      SecretAccessKey:{" "}
-                      {credentials()?.secretAccessKey?.slice(0, 10)}...
-                    </p>
-                    <p>
-                      SessionToken: {credentials()?.accessKeyId?.slice(0, 10)}
-                      ...
-                    </p>
+                    <Show when={callerIdentity()}>
+                      <div class={clsx("cred-grid")}>
+                        <div>UserId: </div>
+                        <div>{callerIdentity()?.UserId}</div>
+                        <div>Account:</div>
+                        <div>{callerIdentity()?.Account}</div>
+                        <div>Arn:</div>
+                        <div>{callerIdentity()?.Arn}</div>
+                      </div>
+                    </Show>
                   </div>
                 </div>
               </wa-popup>

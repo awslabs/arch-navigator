@@ -1,13 +1,13 @@
 import type { CloudControlClientConfig } from "@aws-sdk/client-cloudcontrol";
 import {
   configureClient as configureAwsClient,
-  type ListResourcesQuery,
+  getCallerIdentity,
   listResources as listAwsResources,
+  type ListResourcesQuery,
 } from "./actions/platform/aws";
+import { resourceActions } from "./actions/resource";
 import { configureClient as configureAwsCloudFormationResourceClient } from "./actions/resource/aws-cloudformation";
 import { configureClient as configureGenericResourceClient } from "./actions/resource/aws-generic";
-import { resourceActions } from "./actions/resource";
-
 import type { CredentialedConfig } from "./credentials";
 import type { Barn } from "./types";
 
@@ -21,8 +21,8 @@ function configureThisClient(config: CredentialedConfig) {
 
 export async function initializeApi(config: CredentialedConfig) {
   configureThisClient(config);
-  configureGenericResourceClient(config);
   configureAwsClient(config);
+  configureGenericResourceClient(config);
   configureAwsCloudFormationResourceClient(config);
 }
 
@@ -39,3 +39,5 @@ export async function getDetails(resource: Barn) {
 export async function getRelated(resource: Barn) {
   return resourceActions.getRelated(resource);
 }
+
+export { getCallerIdentity };

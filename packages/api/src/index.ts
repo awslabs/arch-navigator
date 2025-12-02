@@ -21,6 +21,7 @@
  */
 
 export {
+  getCallerIdentity,
   getDetails,
   getRelated,
   initializeApi,
@@ -30,14 +31,14 @@ export {
   formatBarnIdentifier,
   formatBarnType,
   fromBarn,
-  toBarn,
   serviceFromBarn,
+  toBarn,
 } from "./barn";
 export type { AWSCredentials } from "./credentials";
 export { isElectron, loadElectronCredentials } from "./electron-credentials";
 export type { AppState, ResourceItem } from "./state";
-export { BarnSchema } from "./types";
 export type { Barn, ResourceDetails } from "./types";
+export { BarnSchema } from "./types";
 export { createBarn, parseArn } from "./utils/arn-parser";
 export {
   classifyResource,
