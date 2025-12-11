@@ -18,6 +18,42 @@ A desktop application for navigating cloud infrastructure through a unified inte
 - List all root CloudFormation stacks in expandable tree view.
 - Select resource nodes to show details.
 
+## Future Experience
+
+The full-featured experience of `arch-navigator` will allow for fluid navigation of cloud infrastructure.
+
+```
+ arch-navigator ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ SETTINGS
+
+┌-selection----------┐-projection----------------------------------------------┐
+┏━━━━━━━━━━━━━━━━━━┓ | ┏━━━━━━━━━━━━━━━━━━━━━━━━━━┓ ┏━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ QUERY            ┃ | ┃ PATH                     ┃ ┃ LENSES                   ┃
+┗━━━━━━━━━━━━━━━━━━┛ | ┗━━━━━━━━━━━━━━━━━━━━━━━━━━┛ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+┏━━━━━━━━━━━━━━━━━━┓ | ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ OUTLINE          ┃ | ┃ STATISTICS                                            ┃
+┃                  ┃ | ┃                                                       ┃
+┃                  ┃ | ┃                                                       ┃
+┃                  ┃ | ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+┃                  ┃ | ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓ ┏━━━━━━━━━━━━━━━┓
+┃                  ┃ | ┃ FILTERS                             ┃ ┃ VIEW_SELECTOR ┃
+┃                  ┃ | ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛ ┗━━━━━━━━━━━━━━━┛
+┃                  ┃ | ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                  ┃ | ┃ DETAILS                                               ┃
+┃                  ┃ | ┃                                                       ┃
+┗━━━━━━━━━━━━━━━━━━┛ | ┃                                                       ┃
+┏━━━━━━━━━━━━━━━━━━┓ | ┃                                                       ┃
+┃ SUMMARY          ┃ | ┃                                                       ┃
+┃                  ┃ | ┃                                                       ┃
+┃                  ┃ | ┃                                                       ┃
+┗━━━━━━━━━━━━━━━━━━┛ | ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+└--------------------┘---------------------------------------------------------┘
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ PROMPT                                                                       ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+```
+
+> See [DESIGN.md](DESIGN.md) for detailed component descriptions, interaction flows, and design principles.
+
 ## Quick Start
 
 > ⚡ **NB:** These usage patterns will evolve quickly as the project matures.
