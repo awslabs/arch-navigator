@@ -11,9 +11,8 @@ import {
   loadElectronCredentials,
 } from "@repo/api";
 import "@repo/ui";
-import { Layout } from "@repo/ui/components/Layout";
+import { DarkModeIcon, Layout } from "@repo/ui";
 import clsx from "clsx";
-import { Moon, Sun } from "lucide-solid";
 import { createResource, createSignal, onMount, Show, untrack } from "solid-js";
 import { CredentialsForm } from "./CredentialsForm";
 import "./Tool.css";
@@ -232,7 +231,7 @@ export default function Tool(props: ToolProps) {
           appearance="outlined"
           onClick={() => setDarkMode(!darkMode())}
         >
-          {darkMode() ? <Sun /> : <Moon />}
+          {<DarkModeIcon />}
         </wa-button>
       </div>
     </div>
