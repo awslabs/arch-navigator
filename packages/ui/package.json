@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@arch-navigator/api": "workspace:*",
-    "@awesome.me/webawesome": "^3.0.0",
+    "@awesome.me/webawesome": "^3.1.0",
     "@types/lodash-es": "^4.17.12",
     "clsx": "^2.1.1",
     "lodash-es": "^4.17.21",
