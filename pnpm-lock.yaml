@@ -270,8 +270,8 @@ importers:
         specifier: workspace:*
         version: link:../ui
       '@awesome.me/webawesome':
-        specifier: ^3.0.0
-        version: 3.0.0(@floating-ui/utils@0.2.10)(@types/react@19.2.3)
+        specifier: ^3.1.0
+        version: 3.1.0(@floating-ui/utils@0.2.10)(@types/react@19.2.3)
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -307,8 +307,8 @@ importers:
         specifier: workspace:*
         version: link:../api
       '@awesome.me/webawesome':
-        specifier: ^3.0.0
-        version: 3.0.0(@floating-ui/utils@0.2.10)(@types/react@19.2.3)
+        specifier: ^3.1.0
+        version: 3.1.0(@floating-ui/utils@0.2.10)(@types/react@19.2.3)
       '@types/lodash-es':
         specifier: ^4.17.12
         version: 4.17.12
@@ -352,8 +352,8 @@ packages:
   '@adobe/css-tools@4.4.4':
     resolution: {integrity: sha512-Elp+iwUx5rN5+Y8xLt5/GRoG20WGoDCQ/1Fb+1LiGtvwbDavuSk0jhD/eZdckHAuzcDzccnkv+rEjyWfRx18gg==}
 
-  '@awesome.me/webawesome@3.0.0':
-    resolution: {integrity: sha512-KLxAiSV9hH+bB8OkpaZUA9zNgBu6G1cXirsE0VWmdS/jtpup1Wf1aC7yGYjPSi/61BVUqk8geA4oylt4oLdmlQ==}
+  '@awesome.me/webawesome@3.1.0':
+    resolution: {integrity: sha512-9XgTxL/6/8Ynb4KvQBjK33RjnsRyqIJO8zYQODu8MDbS/2ecjah+cUOek6DkK0opg1DC6N7X6GStjcrjAuMMyQ==}
     engines: {node: '>=14.17.0'}
 
   '@aws-crypto/sha256-browser@5.2.0':
@@ -3898,7 +3898,7 @@ snapshots:
 
   '@adobe/css-tools@4.4.4': {}
 
-  '@awesome.me/webawesome@3.0.0(@floating-ui/utils@0.2.10)(@types/react@19.2.3)':
+  '@awesome.me/webawesome@3.1.0(@floating-ui/utils@0.2.10)(@types/react@19.2.3)':
     dependencies:
       '@ctrl/tinycolor': 4.1.0
       '@floating-ui/dom': 1.7.4
